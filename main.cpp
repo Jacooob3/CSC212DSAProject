@@ -4,10 +4,10 @@
 #include <ostream>
 #include <sstream>
 #include <locale>
-
+#include "student.h"
 #include "bst.h"
 
-void makeSchedule(std::string file_name,BST tree) {};
+void makeSchedule(std::string file_name,BST tree);
 std::string uppercase(std::string command);
 std::string openFile();
 
@@ -90,6 +90,25 @@ int main() {
     }
     return 0;
 }
+void makeSchedule(std::string file_name,BST tree){
+    std::fstream file;
+    file.open(file_name, std::ios::in);
+    int num;
+    std::string line, temp, last_name, first_name, class_name;
+    std::getline(file, line);
+    while(std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::getline(ss, temp, ',');
+        std::getline(ss, last_name, ',');
+        std::getline(ss, first_name , ',');
+        while(std::getline(ss,class_name, ',')){
+            //add to class student
+        }
+        float id = stoi(temp);
+
+    }
+}
+
 std::string openFile(){
     std::string file_name;
     bool correct_file = false;

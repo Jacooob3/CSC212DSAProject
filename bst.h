@@ -4,7 +4,8 @@
 
 class BSTNode{
 private:
-    int data;
+    int address;
+    int id;
     BSTNode* left;
     BSTNode* right;
     friend class BST;
