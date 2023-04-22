@@ -2,9 +2,8 @@
 #include <vector>
 #include <iostream>
 
-BSTNode::BSTNode() {
-    this->address = 0;
-    this->id = 0;
+BSTNode::BSTNode(Student student) {
+    this->data = student;
     this->left = nullptr;
     this->right = nullptr;
 }
@@ -20,16 +19,16 @@ BST::BST() {
 BST::~BST() {
     destroy(this->root);
 }
-BSTNode* BST::insert(int id, BSTNode* p){
+BSTNode* BST::insert(Student student, BSTNode* p){
     if(p == nullptr){
-        BSTNode *q = new BSTNode(id);
+        BSTNode *q = new BSTNode(student);
         return q;
     }
-    if(id < p->id){
-        p->left = insert(id, p->left);
+    if(student.get_id() < p->data.get_id()){
+        p->left = insert(student, p->left);
     }
-    else if(id > p->id){
-        p->right = insert(id, p->right);
+    else if(student.get_id() > p->data.get_id()){
+        p->right = insert(student, p->right);
     }
     //Rotate
     int leftH = getHeightRec(p->left);
@@ -43,12 +42,12 @@ BSTNode* BST::insert(int id, BSTNode* p){
     return p;
 }
 
-void BST::insert(int d) {
-    this->root = insert(d, this->root);
+void BST::insert(Student student) {
+    this->root = insert(student, this->root);
 }
 BSTNode* BST::search(int d) {
     BSTNode* tmpParent = this->root;
-    if(this->root->id == d){
+    if(this->root->data.get_id() == d){
         return this->root;
     }
     else{
@@ -57,10 +56,10 @@ BSTNode* BST::search(int d) {
             if(tmp == nullptr){
                 return nullptr;
             }
-            else if(tmp->id == d){
+            else if(tmp->data.get_id() == d){
                 return tmpParent;
             }
-            else if(tmp->id < d){
+            else if(tmp->data.get_id() < d){
                 tmpParent = tmp;
                 tmp = tmp->right;
             }
@@ -89,12 +88,14 @@ BSTNode* BST::rotateRight(BSTNode* tmp) {
 void BST::preorder(std::ofstream &os) {
     printPreOrderRec(this->root, os);
     os << " \n";
+    std::cout << " \n";
 }
 void BST::printPreOrderRec(BSTNode *p, std::ofstream &os){
     if(p == nullptr){
         return;
     }
-    os << p->id << " ";
+    os << p->data.get_id() << " ";
+    std::cout << p->data.get_id() << " ";
     printPreOrderRec(p->left, os);
     printPreOrderRec(p->right ,os);
 }
@@ -107,7 +108,7 @@ void BST::printInOrderRec(BSTNode *p, std::ofstream &os){
         return;
     }
     printInOrderRec(p->left,os);
-    os << p->id << " ";
+    os << p->data.get_id() << " ";
     printInOrderRec(p->right,os);
 }
 void BST::postorder(std::ofstream &os) {
@@ -120,7 +121,7 @@ void BST::printPostOrderRec(BSTNode *p, std::ofstream &os){
     }
     printPostOrderRec(p->left,os);
     printPostOrderRec(p->right,os);
-    os << p->id << " ";
+    os << p->data.get_id() << " ";
 }
 int BST::getHeightRec(BSTNode* tmp) {
     if(tmp == nullptr){

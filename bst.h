@@ -1,18 +1,18 @@
 #pragma once
+#include "student.h"
 #include <fstream>
 #include <sstream>
 
 class BSTNode{
 private:
-    int address;
-    int id;
+    Student data;
     BSTNode* left;
     BSTNode* right;
     friend class BST;
 public:
     // Overloading
     BSTNode();
-    BSTNode(int num);
+    BSTNode(Student student);
     ~BSTNode();
 
 };
@@ -20,7 +20,7 @@ class BST{
 private:
     BSTNode *root;
     void destroy(BSTNode *p);
-    BSTNode* insert(int d, BSTNode *p);
+    BSTNode* insert(Student student, BSTNode *p);
     void printPreOrderRec(BSTNode *root, std::ofstream &os);
     void printInOrderRec(BSTNode *root, std::ofstream &os);
     void printPostOrderRec(BSTNode *root, std::ofstream &os);
@@ -32,7 +32,7 @@ public:
     void preorder(std::ofstream &os);
     void inorder(std::ofstream &os);
     void postorder(std::ofstream &os);
-    void insert(int d);
+    void insert(Student student);
     BSTNode* rotateLeft(BSTNode* tmp);
     BSTNode* rotateRight(BSTNode* tmp);
     BSTNode *search(int d);

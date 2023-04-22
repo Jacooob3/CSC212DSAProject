@@ -7,22 +7,21 @@
 #include "student.h"
 #include "bst.h"
 
-void makeSchedule(std::string file_name,BST tree);
+void makeSchedule(std::string file_name,BST* tree);
 std::string uppercase(std::string command);
 std::string openFile();
-
 int main() {
     //open file
     std::string file_name = openFile();
 
     BST tree;
 
-    makeSchedule(file_name, tree);
+    makeSchedule(file_name, &tree);
 
     std::string out_file;
     std::cout << "Enter name of output file (.csv):" << std::endl;
     std::cin >> out_file;
-
+    std::ofstream os(out_file);
     bool cont = true;
     std::string command;
     while (cont) {
@@ -90,11 +89,12 @@ int main() {
     }
     return 0;
 }
-void makeSchedule(std::string file_name,BST tree){
+void makeSchedule(std::string file_name,BST* tree){
     std::fstream file;
     file.open(file_name, std::ios::in);
     int num;
     std::string line, temp, last_name, first_name, class_name;
+    std::vector<std::string> classes;
     std::getline(file, line);
     while(std::getline(file, line)) {
         std::stringstream ss(line);
@@ -103,9 +103,11 @@ void makeSchedule(std::string file_name,BST tree){
         std::getline(ss, first_name , ',');
         while(std::getline(ss,class_name, ',')){
             //add to class student
+            classes.push_back(class_name);
         }
-        float id = stoi(temp);
-
+        long int id = stoi(temp);
+        Student new_student(id, first_name, last_name, classes);
+        tree->insert(new_student);
     }
 }
 
