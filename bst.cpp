@@ -1,6 +1,7 @@
 #include "bst.h"
 #include <vector>
 #include <iostream>
+#include <ostream>
 
 BSTNode::BSTNode(Student student) {
     this->data = student;
@@ -46,7 +47,7 @@ void BST::insert(Student student) {
     this->root = insert(student, this->root);
 }
 BSTNode* BST::search(int d) {
-    BSTNode* tmpParent = this->root;
+    //BSTNode* tmpParent = this->root;
     if(this->root->data.get_id() == d){
         return this->root;
     }
@@ -57,14 +58,14 @@ BSTNode* BST::search(int d) {
                 return nullptr;
             }
             else if(tmp->data.get_id() == d){
-                return tmpParent;
+                return tmp;
             }
             else if(tmp->data.get_id() < d){
-                tmpParent = tmp;
+                //tmpParent = tmp;
                 tmp = tmp->right;
             }
             else{
-                tmpParent = tmp;
+                //tmpParent = tmp;
                 tmp = tmp->left;
             }
         }
@@ -88,14 +89,14 @@ BSTNode* BST::rotateRight(BSTNode* tmp) {
 void BST::preorder(std::ofstream &os) {
     printPreOrderRec(this->root, os);
     os << " \n";
-    std::cout << " \n";
+    //std::cout << " \n";
 }
 void BST::printPreOrderRec(BSTNode *p, std::ofstream &os){
     if(p == nullptr){
         return;
     }
     os << p->data.get_id() << " ";
-    std::cout << p->data.get_id() << " ";
+    //std::cout << p->data.get_id() << " ";
     printPreOrderRec(p->left, os);
     printPreOrderRec(p->right ,os);
 }
@@ -108,7 +109,13 @@ void BST::printInOrderRec(BSTNode *p, std::ofstream &os){
         return;
     }
     printInOrderRec(p->left,os);
-    os << p->data.get_id() << " ";
+    os << p->data.get_id() << ", ";
+    std::vector<std::string> temp = p->data.get_classes();
+    os << p->data.get_name().first << " " << p->data.get_name().second << ", ";
+    for (int i = 0; i < temp.size(); i++) {
+        os << temp[i] << " ";
+    }
+    os << "\n";
     printInOrderRec(p->right,os);
 }
 void BST::postorder(std::ofstream &os) {
@@ -141,4 +148,19 @@ int BST::getHeight() {
 }
 void BST::destroy(BSTNode *p) {
     delete p;
+}
+void BST::print_node(BSTNode *tmp, std::ofstream &os) {
+    os << tmp->data.get_id() << ", " << tmp->data.get_name().first << " " << tmp->data.get_name().second << ", ";
+    std::vector<std::string> temp = tmp->data.get_classes();
+    for (int i = 0; i < temp.size(); i++) {
+        os << temp[i] << " ";
+    }
+    os << "\n";
+}
+void BST::add_course(BSTNode *tmp, std::string course) {
+    tmp->data.add_classes(course);
+}
+
+void BST::remove_course(BSTNode *tmp, std::string course) {
+    tmp->data.remove_classes(course);
 }
