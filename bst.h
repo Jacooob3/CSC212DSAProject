@@ -2,6 +2,7 @@
 #include "student.h"
 #include <fstream>
 #include <sstream>
+#include <ostream>
 
 class BSTNode{
 private:
@@ -35,7 +36,9 @@ public:
     void insert(Student student);
     BSTNode* rotateLeft(BSTNode* tmp);
     BSTNode* rotateRight(BSTNode* tmp);
-    BSTNode *search(int d);
+    BSTNode* search(int d);
+    void print_node(BSTNode* tmp, std::ofstream &os);
     int getHeight();
+    void add_course(BSTNode* tmp, std::string course);
+    void remove_course(BSTNode* tmp, std::string course);
 };
-
