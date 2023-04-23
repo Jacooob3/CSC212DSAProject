@@ -21,7 +21,7 @@ int main() {
     std::string out_file;
     std::cout << "Enter name of output file (.csv):" << std::endl;
     std::cin >> out_file;
-    std::ofstream os(out_file);
+    std::ofstream os;
     bool cont = true;
     std::string command;
     while (cont) {
@@ -33,29 +33,76 @@ int main() {
         std::cout << "If you want to delete a student, enter 'DELETE'" << std::endl;
         std::cout << "If you want to enroll a student in an additional course, enter 'ENROlL'" << std::endl;
         std::cout << "If you want to unenroll a student from a course, enter 'UNENROLL'" << std::endl;
+        std::cout << "If you want to stop program, enter 'QUIT'" << std::endl;
         std::cin >> command;
         command = uppercase(command);
         //Adding code to allow these commands to run
         if (command == "ALL") {
-
+            os.open(out_file);
+            tree.inorder(os);
+            os.close();
         }
         else if (command == "SEARCH") {
             int id_num;
-            std::string id_string;
+            std::string temp;
+            std::cout << "Enter student's ID number:" << std::endl;
+            std::cin >> temp;
+            id_num = stoi(temp);
 
-            std::cout << "Enter new student's ID number:" << std::endl;
-            std::cin >> id_string;
+            if (tree.search(id_num) != nullptr) {
+                os.open(out_file);
+                tree.print_node(tree.search(id_num), os);
+                os.close();
+            }
+            else {
+                std::cout << "Student ID not found" << std::endl;
+            }
 
         }
         else if (command == "ADD") {
-            int id_num;
-            std::string id_string;
+            std::string out_put;
+            std::cout << "To enter new student's data by terminal, enter 'TERMINAL', to enter by csv file, enter 'FILE'" << std::endl;
+            std::cin >> out_put;
+            bool cont_add = true;
 
-            std::cout << "Enter new student's ID number:" << std::endl;
-            std::cin >> id_string;
+            while (cont_add) {
+                if (out_put == "TERMINAL") {
+                    int id_num;
+                    std::string last_name;
+                    std::string first_name;
+                    std::vector<std::string> classes;
+                    std::string temp;
 
-            //can either continue with this and take inputs 1 by 1, or have user input a csv file with new student's details
+                    std::cout << "Enter new student's ID number:" << std::endl;
+                    std::cin >> temp;
+                    id_num = stoi(temp);
+                    std::cout << "Enter new student's Last Name:" << std::endl;
+                    std::cin >> last_name;
+                    std::cout << "Enter new student's First Name:" << std::endl;
+                    std::cin >> first_name;
 
+                    std::cout << "Enter new student's class:" << std::endl;
+                    while (std::cin >> temp) {
+                        if (temp == "QUIT") {
+                            break;
+                        }
+                        classes.push_back(temp);
+                        std::cout << "Enter new student's class or enter 'QUIT' to quit:" << std::endl;
+                    }
+
+                    Student new_student(id_num, first_name, last_name, classes);
+                    tree.insert(new_student);
+                    cont_add = false;
+                } else if (out_put == "FILE") {
+                    std::string file;
+                    std::cout << "Enter file name:" << std::endl;
+                    std::cin >> file;
+                    makeSchedule(file, &tree);
+                    cont_add = false;
+                } else {
+                    std::cout << "Wrong command inputted, try again" << std::endl;
+                }
+            }
         }
         else if (command == "DELETE") {
             int id_num;
@@ -69,24 +116,49 @@ int main() {
         }
         else if (command == "ENROLL") {
             int id_num;
-            std::string id_string;
+            std::string temp;
 
             std::cout << "Enter student's ID number:" << std::endl;
-            std::cin >> id_string;
+            std::cin >> temp;
+            id_num = stoi(temp);
+
+            if (tree.search(id_num) != nullptr) {
+                std::cout << "Enter enrolled course:" << std::endl;
+                std::cin >> temp;
+                tree.add_course(tree.search(id_num), temp);
+            }
+            else {
+                std::cout << "Student ID not found" << std::endl;
+            }
 
         }
         else if (command == "UNENROLL") {
             int id_num;
-            std::string id_string;
+            std::string temp;
 
-            std::cout << "Enter new student's ID number:" << std::endl;
-            std::cin >> id_string;
+            std::cout << "Enter student's ID number:" << std::endl;
+            std::cin >> temp;
+            id_num = stoi(temp);
 
+            if (tree.search(id_num) != nullptr) {
+                std::cout << "Enter course to unenroll:" << std::endl;
+                std::cin >> temp;
+                tree.remove_course(tree.search(id_num), temp);
+            }
+            else {
+                std::cout << "Student ID not found" << std::endl;
+            }
+        }
+        else if (command == "QUIT") {
+            cont = false;
         }
         else {
             std::cout << "Wrong command inputted, try again." << std::endl;
         }
+        os << "\n";
     }
+    //os.close();
+
     return 0;
 }
 void makeSchedule(std::string file_name,BST* tree){
@@ -94,9 +166,9 @@ void makeSchedule(std::string file_name,BST* tree){
     file.open(file_name, std::ios::in);
     int num;
     std::string line, temp, last_name, first_name, class_name;
-    std::vector<std::string> classes;
     std::getline(file, line);
     while(std::getline(file, line)) {
+        std::vector<std::string> classes;
         std::stringstream ss(line);
         std::getline(ss, temp, ',');
         std::getline(ss, last_name, ',');
