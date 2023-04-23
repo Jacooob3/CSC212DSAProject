@@ -14,4 +14,7 @@ public:
     void change_first(std::string first);
     void change_last(std::string last);
     void add_classes(std::string class_name);
+    void remove_classes(std::string class_name);
+    std::vector<std::string> get_classes();
+    std::pair<std::string, std::string> get_name();
 };
