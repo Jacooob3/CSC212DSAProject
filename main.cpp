@@ -7,16 +7,21 @@
 #include "student.h"
 #include "bst.h"
 
-void makeSchedule(std::string file_name,BST* tree);
-std::string uppercase(std::string command);
+
+void makeSchedule(std::string file_name,BST* tree); 
+
+std::string uppercase(std::string command); 
+//takes a string and returns a copy of the string with all characters converted to uppercase
+
 std::string openFile();
+
 int main() {
     //open file
     std::string file_name = openFile();
 
     BST tree;
-
-    makeSchedule(file_name, &tree);
+    //creats a binary search tree
+    makeSchedule(file_name, &tree); 
 
     std::string out_file;
     std::cout << "Enter name of output file (.csv):" << std::endl;
@@ -24,6 +29,7 @@ int main() {
     std::ofstream os;
     bool cont = true;
     std::string command;
+    //enters a loop that prompts the user for commands and executes the corresponding code based on the command entered
     while (cont) {
         std::cout << "If you want to print out all students' schedules, enter 'ALL'" << std::endl;
         std::cout << "If you want to see the amount of students in a course, enter 'COURSE'" << std::endl;
@@ -37,8 +43,8 @@ int main() {
         command = uppercase(command);
         //Adding code to allow these commands to run
         if (command == "ALL") {
-            os.open(out_file);
-            tree.inorder(os);
+            os.open(out_file); //opem an output file
+            tree.inorder(os); //prints out all student's schedules by performing an inorder traversal of the BST
             os.close();
         }
 
@@ -101,7 +107,8 @@ int main() {
                     Student new_student(id_num, first_name, last_name, classes);
                     tree.insert(new_student);
                     cont_add = false;
-                } else if (out_put == "FILE") {
+                }
+                else if (out_put == "FILE") {
                     std::string file;
                     std::cout << "Enter file name:" << std::endl;
                     std::cin >> file;
@@ -147,11 +154,11 @@ int main() {
             std::cout << "Enter student's ID number:" << std::endl;
             std::cin >> temp;
             id_num = stoi(temp);
-
+            //find the student using student id
             if (tree.search(id_num) != nullptr) {
                 std::cout << "Enter course to unenroll:" << std::endl;
                 std::cin >> temp;
-                tree.remove_course(tree.search(id_num), temp);
+                tree.remove_course(tree.search(id_num), temp); //remove the course
             }
             else {
                 std::cout << "Student ID not found" << std::endl;
@@ -159,6 +166,7 @@ int main() {
         }
         else if (command == "QUIT") {
             cont = false;
+            //the while loop to terminate and the program to exit
         }
         else {
             std::cout << "Wrong command inputted, try again." << std::endl;
@@ -169,6 +177,9 @@ int main() {
 
     return 0;
 }
+
+//takes a filename and a pointer to a binary search tree as arguments, reads the data from the 
+//file, and inserts the data into the tree
 void makeSchedule(std::string file_name,BST* tree){
     std::fstream file;
     file.open(file_name, std::ios::in);
