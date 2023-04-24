@@ -51,25 +51,22 @@ void BST::insert(Student student) {
 
 //Takes a specfic class from the user and searches through each students' list of classes to determine how many of them are in that specific class.
 int BST::courseCount(std::string courseName) {
-    int count=0;
-    int i = 0;
-    //set tmp to root node
-    BSTNode *tmp = this->root;
-    //go through list of students
-    while (tmp!= nullptr) {
-        //go through each class 
-        while (i < 6) {
-            if (tmp->data.get_classes()[i] == courseName) {
-                count += 1;
-            }
-            i++;
-        }
-        //set tmp node to next node/student
-        tmp = tmp->right;
-    }
-    return count;
+    return courseCountRec(this->root, courseName);
 }
-
+int BST::courseCountRec(BSTNode *tmp, std::string courseName) {
+    if (tmp == nullptr){
+        return 0;
+    }
+    int count = 0;
+    int i = 0;
+    while(i < tmp->data.get_classes().size()){
+        if(tmp->data.get_classes()[i] == courseName){
+            count+= 1;
+        }
+        i++;
+    }
+    return count + courseCountRec(tmp->left, courseName) + courseCountRec(tmp->right, courseName);
+}
 //takes an ID and returns the node in the tree that corresponds to that ID, or nullptr if the ID is not found in the tree
 BSTNode* BST::search(int d) {
     //BSTNode* tmpParent = this->root;
@@ -83,16 +80,16 @@ BSTNode* BST::search(int d) {
             if(tmp == nullptr){
                 return nullptr;
             }
-            //we have found the correct student ID
+                //we have found the correct student ID
             else if(tmp->data.get_id() == d){
                 return tmp;
             }
-            //look to the node to the right
+                //look to the node to the right
             else if(tmp->data.get_id() < d){
                 //tmpParent = tmp;
                 tmp = tmp->right;
             }
-            //look to the node to the left
+                //look to the node to the left
             else{
                 //tmpParent = tmp;
                 tmp = tmp->left;
@@ -118,18 +115,17 @@ BSTNode* BST::rotateRight(BSTNode* tmp) {
 void BST::preorder(std::ofstream &os) {
     printPreOrderRec(this->root, os);
     os << " \n";
-    //std::cout << " \n";
 }
 void BST::printPreOrderRec(BSTNode *p, std::ofstream &os){
     if(p == nullptr){
         return;
     }
     os << p->data.get_id() << " ";
-    //std::cout << p->data.get_id() << " ";
     printPreOrderRec(p->left, os);
     printPreOrderRec(p->right ,os);
 }
 void BST::inorder(std::ofstream &os) {
+    std::cout << "Succesfully added the following students to your output file: \n";
     BST::printInOrderRec(this->root, os);
     os << " \n";
 }
@@ -138,7 +134,14 @@ void BST::printInOrderRec(BSTNode *p, std::ofstream &os){
         return;
     }
     printInOrderRec(p->left,os);
-    os << p->data.get_id() << ", ";
+    os << p->data.get_id() << ",";
+    std::cout << p->data.get_id() << " " << p->data.get_name().first << " " << p->data.get_name().second << " " << p->data.get_email();
+    int i = 0;
+    while(i < p->data.get_classes().size()){
+        std::cout << " " << p->data.get_classes()[i];
+        i++;
+    }
+    std::cout << "\n";
     std::vector<std::string> temp = p->data.get_classes();
     os << p->data.get_name().first << " " << p->data.get_name().second << ", ";
     for (int i = 0; i < temp.size(); i++) {
@@ -184,15 +187,19 @@ void BST::destroy(BSTNode *p) {
 //print node/Student information
 void BST::print_node(BSTNode *tmp, std::ofstream &os) {
     os << tmp->data.get_id() << ", " << tmp->data.get_name().first << " " << tmp->data.get_name().second << ", ";
+    std::cout << tmp->data.get_id() << ", " << tmp->data.get_name().first << " " << tmp->data.get_name().second << ", ";
     std::vector<std::string> temp = tmp->data.get_classes();
     for (int i = 0; i < temp.size(); i++) {
         os << temp[i] << " ";
+        std::cout <<temp[i]<< " ";
     }
     os << "\n";
+    std::cout << "\n";
 }
 //adds course to student's list of classes.
 void BST::add_course(BSTNode *tmp, std::string course) {
     tmp->data.add_classes(course);
+    std::cout << tmp->data.get_name().first << " " << tmp->data.get_name().second << " has been successfully enrolled in " << course << "\n";
 }
 //removes course from student's list of classes
 void BST::remove_course(BSTNode *tmp, std::string course) {

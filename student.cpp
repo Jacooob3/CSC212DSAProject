@@ -2,7 +2,7 @@
 
 Student::Student(){};
 //establish student object -constructor
-Student::Student(int num, std::string firstname, std::string lastname, std::vector<std::string> classes_temp){
+Student::Student(int num, std::string firstname, std::string lastname, std::string email, std::vector<std::string> classes_temp){
     this->id = num;
     this->first_name = firstname;
     this->last_name = lastname;

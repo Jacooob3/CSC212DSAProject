@@ -4,11 +4,11 @@
 class Student{
 private:
     int id;
-    std::string first_name, last_name;
+    std::string first_name, last_name , email;
     std::vector<std::string> classes;
 public:
     Student();
-    Student(int id, std::string firstname, std::string lastname, std::vector<std::string> classes);
+    Student(int id, std::string firstname, std::string lastname, std::string email, std::vector<std::string> classes);
     int get_id();
     std::string get_email();
     void change_id(int num);

@@ -38,6 +38,7 @@ public:
     BSTNode* rotateRight(BSTNode* tmp);
     BSTNode* search(int d);
     int courseCount(std::string courseName);
+    int courseCountRec(BSTNode* tmp, std::string courseName);
     void print_node(BSTNode* tmp, std::ofstream &os);
     int getHeight();
     void add_course(BSTNode* tmp, std::string course);

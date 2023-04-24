@@ -3,14 +3,15 @@
 #include <fstream>
 #include <ostream>
 #include <sstream>
-#include <locale>
+#include <stdio.h>
+#include <ctype.h>
 #include "student.h"
 #include "bst.h"
 
 
-void makeSchedule(std::string file_name,BST* tree); 
+void makeSchedule(std::string file_name,BST* tree);
 
-std::string uppercase(std::string command); 
+std::string uppercase(std::string command);
 //takes a string and returns a copy of the string with all characters converted to uppercase
 
 std::string openFile();
@@ -20,13 +21,14 @@ int main() {
     std::string file_name = openFile();
 
     BST tree;
-    //creats a binary search tree
-    makeSchedule(file_name, &tree); 
-
+    //creates a binary search tree
+    makeSchedule(file_name, &tree);
+    //Creates Output File
     std::string out_file;
     std::cout << "Enter name of output file (.csv):" << std::endl;
     std::cin >> out_file;
     std::ofstream os;
+
     bool cont = true;
     std::string command;
     //enters a loop that prompts the user for commands and executes the corresponding code based on the command entered
@@ -36,26 +38,26 @@ int main() {
         std::cout << "If you want to search and print a student's schedule, enter 'SEARCH'" << std::endl;
         std::cout << "If you want to add a new student and their schedule, enter 'ADD'" << std::endl;
         std::cout << "If you want to delete a student, enter 'DELETE'" << std::endl;
-        std::cout << "If you want to enroll a student in an additional course, enter 'ENROlL'" << std::endl;
+        std::cout << "If you want to enroll a student in an additional course, enter 'ENROLL'" << std::endl;
         std::cout << "If you want to unenroll a student from a course, enter 'UNENROLL'" << std::endl;
         std::cout << "If you want to stop program, enter 'QUIT'" << std::endl;
         std::cin >> command;
         command = uppercase(command);
+
         //Adding code to allow these commands to run
         if (command == "ALL") {
-            os.open(out_file); //opem an output file
+            os.open(out_file); //open an output file
             tree.inorder(os); //prints out all student's schedules by performing an inorder traversal of the BST
             os.close();
         }
-
+        //
         else if (command == "COURSE") {
             std::string course;
             std::cout << "Enter the course title:" << std::endl;
             std::cin >> course;
-            std::cout << "The number of students in this course is " << tree.courseCount(course);
+            std::cout << "There are " << tree.courseCount(course) << " in " << course << "\n";
         }
-        
-
+        //
         else if (command == "SEARCH") {
             int id_num;
             std::string temp;
@@ -71,19 +73,17 @@ int main() {
             else {
                 std::cout << "Student ID not found" << std::endl;
             }
-
         }
         else if (command == "ADD") {
-            std::string out_put;
-            std::cout << "To enter new student's data by terminal, enter 'TERMINAL', to enter by csv file, enter 'FILE'" << std::endl;
-            std::cin >> out_put;
             bool cont_add = true;
-
             while (cont_add) {
+                std::string out_put;
+                std::cout << "To enter new student's data by terminal, enter 'TERMINAL', to enter by csv file, enter 'FILE'" << std::endl;
+                std::cin >> out_put;
+                out_put = uppercase(out_put);
                 if (out_put == "TERMINAL") {
                     int id_num;
-                    std::string last_name;
-                    std::string first_name;
+                    std::string last_name, first_name, email;
                     std::vector<std::string> classes;
                     std::string temp;
 
@@ -94,9 +94,12 @@ int main() {
                     std::cin >> last_name;
                     std::cout << "Enter new student's First Name:" << std::endl;
                     std::cin >> first_name;
+                    std::cout << "Enter new student's email:" << std::endl;
+                    std::cin >> email;
 
                     std::cout << "Enter new student's class:" << std::endl;
                     while (std::cin >> temp) {
+                        temp = uppercase(temp);
                         if (temp == "QUIT") {
                             break;
                         }
@@ -104,7 +107,7 @@ int main() {
                         std::cout << "Enter new student's class or enter 'QUIT' to quit:" << std::endl;
                     }
 
-                    Student new_student(id_num, first_name, last_name, classes);
+                    Student new_student(id_num, first_name, email, last_name, classes);
                     tree.insert(new_student);
                     cont_add = false;
                 }
@@ -178,13 +181,13 @@ int main() {
     return 0;
 }
 
-//takes a filename and a pointer to a binary search tree as arguments, reads the data from the 
+//takes a filename and a pointer to a binary search tree as arguments, reads the data from the
 //file, and inserts the data into the tree
 void makeSchedule(std::string file_name,BST* tree){
     std::fstream file;
     file.open(file_name, std::ios::in);
     int num;
-    std::string line, temp, last_name, first_name, class_name;
+    std::string line, temp, last_name, first_name, class_name, email;
     std::getline(file, line);
     while(std::getline(file, line)) {
         std::vector<std::string> classes;
@@ -192,12 +195,13 @@ void makeSchedule(std::string file_name,BST* tree){
         std::getline(ss, temp, ',');
         std::getline(ss, last_name, ',');
         std::getline(ss, first_name , ',');
+        std::getline(ss,email, ',');
         while(std::getline(ss,class_name, ',')){
             //add to class student
             classes.push_back(class_name);
         }
         long int id = stoi(temp);
-        Student new_student(id, first_name, last_name, classes);
+        Student new_student(id, first_name, last_name, email, classes);
         tree->insert(new_student);
     }
 }
@@ -220,10 +224,10 @@ std::string openFile(){
     }
 }
 std::string uppercase(std::string command){
-    std::locale loc;
-    std::string temp = command;
-    for(int i = 0; i < command.length(); i++){
-        std::toupper(temp[i], loc);
+    int i = 0;
+    while(command[i]){
+        command[i] = toupper(command[i]);
+        i++;
     }
-    return temp;
+    return command;
 }
