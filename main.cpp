@@ -42,6 +42,14 @@ int main() {
             tree.inorder(os);
             os.close();
         }
+
+            else if (command == "COURSE") {
+            std::string course;
+            std::cout << "Enter the course title:" << std::endl;
+            std::cin >> course;
+            std::cout << "The number of students in this course is " << tree.courseCount(course);
+        }
+
         else if (command == "SEARCH") {
             int id_num;
             std::string temp;
