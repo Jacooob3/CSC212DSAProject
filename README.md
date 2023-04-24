@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
- 
+ <h1> CSC212 DSA Project by Jacob Hyun, Ivan Abreu, Sean Reth, Tanya Li </h1>
 <body>
   <h2>B-Tree
   </h2>
