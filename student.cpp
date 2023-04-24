@@ -11,18 +11,22 @@ Student::Student(int num, std::string firstname, std::string lastname, std::vect
     }
 }
 
+//retrieves student id number
 int Student::get_id(){
     return this->id;
 }
 
+//retrieves student email
 std::string Student::get_email(){
     return this->email;
 }
 
+//retrieves list of classes of a student
 std::vector<std::string> Student::get_classes() {
     return this->classes;
 }
 
+//gets student name by pair first name and last name together
 std::pair<std::string, std::string> Student::get_name() {
     std::pair<std::string, std::string> temp(this->first_name,this->last_name);
     return temp;
