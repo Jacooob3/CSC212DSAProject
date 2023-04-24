@@ -43,12 +43,14 @@ int main() {
         std::cout << "If you want to stop program, enter 'QUIT'" << std::endl;
         std::cin >> command;
         command = uppercase(command);
+        std::cout << "\n";
 
         //Adding code to allow these commands to run
         if (command == "ALL") {
             os.open(out_file); //open an output file
             tree.inorder(os); //prints out all student's schedules by performing an inorder traversal of the BST
             os.close();
+            std::cout << "\n";
         }
         //
         else if (command == "COURSE") {
@@ -56,6 +58,7 @@ int main() {
             std::cout << "Enter the course title:" << std::endl;
             std::cin >> course;
             std::cout << "There are " << tree.courseCount(course) << " in " << course << "\n";
+            std::cout << "\n";
         }
         //
         else if (command == "SEARCH") {
@@ -73,6 +76,7 @@ int main() {
             else {
                 std::cout << "Student ID not found" << std::endl;
             }
+            std::cout << "\n";
         }
         else if (command == "ADD") {
             bool cont_add = true;
@@ -121,6 +125,7 @@ int main() {
                     std::cout << "Wrong command inputted, try again" << std::endl;
                 }
             }
+            std::cout << "\n";
         }
         else if (command == "DELETE") {
             int id_num;
@@ -130,7 +135,7 @@ int main() {
             std::cin >> id_string;
 
             //delete function here
-
+            std::cout << "\n";
         }
         else if (command == "ENROLL") {
             int id_num;
@@ -148,7 +153,7 @@ int main() {
             else {
                 std::cout << "Student ID not found" << std::endl;
             }
-
+            std::cout << "\n";
         }
         else if (command == "UNENROLL") {
             int id_num;
@@ -166,6 +171,7 @@ int main() {
             else {
                 std::cout << "Student ID not found" << std::endl;
             }
+            std::cout << "\n";
         }
         else if (command == "QUIT") {
             cont = false;
