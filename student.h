@@ -10,6 +10,7 @@ public:
     Student();
     Student(int id, std::string firstname, std::string lastname, std::vector<std::string> classes);
     int get_id();
+    std::string get_email();
     void change_id(int num);
     void change_first(std::string first);
     void change_last(std::string last);
