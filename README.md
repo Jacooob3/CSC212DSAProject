@@ -1,6 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-# CSC212DSAProject
  <head>
   <title>CSC 212 DSA Project</title>
   </head>
