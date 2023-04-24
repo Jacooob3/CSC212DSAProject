@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html>
  <head>
-  <title>CSC 212 DSA Project</title>
-  </head>
+      <title>CSC 212 DSA Project</title>
+ </head>
   
 <body>
   <h2>B-Tree
