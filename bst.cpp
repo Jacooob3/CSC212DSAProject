@@ -46,6 +46,23 @@ BSTNode* BST::insert(Student student, BSTNode* p){
 void BST::insert(Student student) {
     this->root = insert(student, this->root);
 }
+
+int BST::courseCount(std::string courseName) {
+    int count=0;
+    int i = 0;
+    BSTNode *tmp = this->root;
+    while (tmp!= nullptr) {
+        while (i < 6) {
+            if (tmp->data.get_classes()[i] == courseName) {
+                count += 1;
+            }
+            i++;
+        }
+        tmp = tmp->right;
+    }
+    return count;
+}
+
 BSTNode* BST::search(int d) {
     //BSTNode* tmpParent = this->root;
     if(this->root->data.get_id() == d){
