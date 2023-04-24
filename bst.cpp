@@ -20,6 +20,8 @@ BST::BST() {
 BST::~BST() {
     destroy(this->root);
 }
+
+//takes a Student object and inserts it into the tree in the appropriate place
 BSTNode* BST::insert(Student student, BSTNode* p){
     if(p == nullptr){
         BSTNode *q = new BSTNode(student);
@@ -47,22 +49,28 @@ void BST::insert(Student student) {
     this->root = insert(student, this->root);
 }
 
+//Takes a specfic class from the user and searches through each students' list of classes to determine how many of them are in that specific class.
 int BST::courseCount(std::string courseName) {
     int count=0;
     int i = 0;
+    //set tmp to root node
     BSTNode *tmp = this->root;
+    //go through list of students
     while (tmp!= nullptr) {
+        //go through each class 
         while (i < 6) {
             if (tmp->data.get_classes()[i] == courseName) {
                 count += 1;
             }
             i++;
         }
+        //set tmp node to next node/student
         tmp = tmp->right;
     }
     return count;
 }
 
+//takes an ID and returns the node in the tree that corresponds to that ID, or nullptr if the ID is not found in the tree
 BSTNode* BST::search(int d) {
     //BSTNode* tmpParent = this->root;
     if(this->root->data.get_id() == d){
@@ -71,16 +79,20 @@ BSTNode* BST::search(int d) {
     else{
         BSTNode* tmp = this->root;
         while(true){
+            //Student ID does not exist
             if(tmp == nullptr){
                 return nullptr;
             }
+            //we have found the correct student ID
             else if(tmp->data.get_id() == d){
                 return tmp;
             }
+            //look to the node to the right
             else if(tmp->data.get_id() < d){
                 //tmpParent = tmp;
                 tmp = tmp->right;
             }
+            //look to the node to the left
             else{
                 //tmpParent = tmp;
                 tmp = tmp->left;
@@ -147,6 +159,8 @@ void BST::printPostOrderRec(BSTNode *p, std::ofstream &os){
     printPostOrderRec(p->right,os);
     os << p->data.get_id() << " ";
 }
+
+//returns the height of the tree
 int BST::getHeightRec(BSTNode* tmp) {
     if(tmp == nullptr){
         return 0;
@@ -163,9 +177,11 @@ int BST::getHeightRec(BSTNode* tmp) {
 int BST::getHeight() {
     return getHeightRec(this->root);
 }
+//called by the destructor to free the memory allocated by the nodes
 void BST::destroy(BSTNode *p) {
     delete p;
 }
+//print node/Student information
 void BST::print_node(BSTNode *tmp, std::ofstream &os) {
     os << tmp->data.get_id() << ", " << tmp->data.get_name().first << " " << tmp->data.get_name().second << ", ";
     std::vector<std::string> temp = tmp->data.get_classes();
@@ -174,10 +190,11 @@ void BST::print_node(BSTNode *tmp, std::ofstream &os) {
     }
     os << "\n";
 }
+//adds course to student's list of classes.
 void BST::add_course(BSTNode *tmp, std::string course) {
     tmp->data.add_classes(course);
 }
-
+//removes course from student's list of classes
 void BST::remove_course(BSTNode *tmp, std::string course) {
     tmp->data.remove_classes(course);
 }
