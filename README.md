@@ -13,7 +13,7 @@
   </h2>
 
 <p>
-  A B-Tree is a self-balancing search tree that can be used to store and retrieve large amounts of data. In this project, we have implemented a B-Tree that stores student records, which consist of a student's ID, name, classes. 
+  A B-Tree is a self-balancing search tree that can be used to store and retrieve large amounts of data. In this project, we have implemented a B-Tree that stores student records, which consist of a student's ID, name, classes, emails. 
   </p>
 
 <p>
@@ -23,6 +23,7 @@
 * Insertion or deletion of existing student classes.<br>
 * Searching for student records by student ID.<br>
 * Searching for the amount of student in a course.<br>
+* Searching for the email of a student.<br>
 * All students data could be printing out.<br>
   </P>
 
@@ -35,7 +36,7 @@
   </p>
 
 <p>
-  We also discuss how B-trees work in this project, including the specific requirements for the student records that will be stored. We decided to include Student ID, Last Name, First Name, Class 1, 2, 3, 4, 5, 6 in the record because these are common attributes used to identify and differentiate students.
+  We also discuss how B-trees work in this project, including the specific requirements for the student records that will be stored. We decided to include Student ID, Last Name, First Name, Class 1, 2, 3, 4, 5, 6, and email in the record because these are common attributes used to identify and differentiate students.
   </p>
 
 <p>
