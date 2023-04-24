@@ -2,8 +2,7 @@
 <html>
 # CSC212DSAProject
  <head>
-  <title>CSC 212 DSA Project
-   </title>
+  <title>CSC 212 DSA Project</title>
   </head>
   
 <body>
