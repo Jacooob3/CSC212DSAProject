@@ -26,8 +26,7 @@ int main() {
     std::string command;
     while (cont) {
         std::cout << "If you want to print out all students' schedules, enter 'ALL'" << std::endl;
-        //Maybe can add this as an option
-        //std::cout << "If you want to see the amount of students in a course, enter 'COURSE'" << std::endl;
+        std::cout << "If you want to see the amount of students in a course, enter 'COURSE'" << std::endl;
         std::cout << "If you want to search and print a student's schedule, enter 'SEARCH'" << std::endl;
         std::cout << "If you want to add a new student and their schedule, enter 'ADD'" << std::endl;
         std::cout << "If you want to delete a student, enter 'DELETE'" << std::endl;
@@ -43,7 +42,14 @@ int main() {
             os.close();
         }
 
-            else if (command == "COURSE") {
+        else if (command == "COURSE") {
+            std::string course;
+            std::cout << "Enter the course title:" << std::endl;
+            std::cin >> course;
+            std::cout << "The number of students in this course is " << tree.courseCount(course);
+        }
+        
+        else if (command == "COURSE") {
             std::string course;
             std::cout << "Enter the course title:" << std::endl;
             std::cin >> course;
