@@ -14,6 +14,10 @@ int Student::get_id(){
     return this->id;
 }
 
+std::string Student::get_email(){
+    return this->email;
+}
+
 std::vector<std::string> Student::get_classes() {
     return this->classes;
 }
