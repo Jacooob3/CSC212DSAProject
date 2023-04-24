@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
  <head>
   <title>CSC 212 DSA Project</title>
