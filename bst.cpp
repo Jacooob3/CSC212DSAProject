@@ -112,20 +112,9 @@ BSTNode* BST::rotateRight(BSTNode* tmp) {
     return p;
 }
 //Print
-void BST::preorder(std::ofstream &os) {
-    printPreOrderRec(this->root, os);
-    os << " \n";
-}
-void BST::printPreOrderRec(BSTNode *p, std::ofstream &os){
-    if(p == nullptr){
-        return;
-    }
-    os << p->data.get_id() << " ";
-    printPreOrderRec(p->left, os);
-    printPreOrderRec(p->right ,os);
-}
 void BST::inorder(std::ofstream &os) {
     std::cout << "Succesfully added the following students to your output file: \n";
+    os << "Student ID, FirstName LastName, Classes\n";
     BST::printInOrderRec(this->root, os);
     os << " \n";
 }
@@ -149,18 +138,6 @@ void BST::printInOrderRec(BSTNode *p, std::ofstream &os){
     }
     os << "\n";
     printInOrderRec(p->right,os);
-}
-void BST::postorder(std::ofstream &os) {
-    BST::printPostOrderRec(this->root, os);
-    os << " \n";
-}
-void BST::printPostOrderRec(BSTNode *p, std::ofstream &os){
-    if(p == nullptr){
-        return;
-    }
-    printPostOrderRec(p->left,os);
-    printPostOrderRec(p->right,os);
-    os << p->data.get_id() << " ";
 }
 
 //returns the height of the tree
