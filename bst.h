@@ -22,18 +22,14 @@ private:
     BSTNode *root;
     void destroy(BSTNode *p);
     BSTNode* insert(Student student, BSTNode *p);
-    void printPreOrderRec(BSTNode *root, std::ofstream &os);
     void printInOrderRec(BSTNode *root, std::ofstream &os);
-    void printPostOrderRec(BSTNode *root, std::ofstream &os);
     int getHeightRec(BSTNode* root);
     BSTNode* delete_rec(BSTNode* node, int id);
 
 public:
     BST();
     ~BST();
-    void preorder(std::ofstream &os);
     void inorder(std::ofstream &os);
-    void postorder(std::ofstream &os);
     void insert(Student student);
     BSTNode* rotateLeft(BSTNode* tmp);
     BSTNode* rotateRight(BSTNode* tmp);
@@ -46,5 +42,4 @@ public:
     void remove_course(BSTNode* tmp, std::string course);
     void delete_student(int id);
     Student find_min_value(BSTNode* node);
-}
 };
