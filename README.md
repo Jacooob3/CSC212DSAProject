@@ -42,7 +42,9 @@
 <p>
   Additionally, we determined the format and content of the CSV data file used to populate the B-tree with student records.
   </p>
-
+ <h2> Binary Tree Visualizer</h2>
+ <p> It is recommended to click on this link https://github.com/Jacooob3/CSC212DSAProject/raw/main/graphviz.svg for the full visuals as it is a very wide image
+     and could not fit on this page</p>
 <h2> 
   In Conclusion
   </h2>
