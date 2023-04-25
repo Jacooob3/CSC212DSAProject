@@ -31,7 +31,7 @@ StudentID,LastName,FirstName,Email,Class1,Class2,Class3,Class4,Class5,Class6
 100111140,Young,Yolanda,yolanda_young@uri.edu,CSC101,CSC102,MTH101,MTH102,WRT101,SPA101
 100111141,Zimmerman,Zachary,zachary_zimmerman@uri.edu,WRT101,CSC101,LAN102,SPA102,MTH101,MTH102
 100111142,Allen,Anna,anna_allen@uri.edu,CSC102,MTH102,PHY101,WRT101,LAN102,SPA102
-100111143,Baker,Ben,ben_baker@uri.edu,CSC101,MTH101,PHY102,WRT101,LAN
+100111143,Baker,Ben,ben_baker@uri.edu,CSC101,MTH101,PHY102,WRT101,LAN201
 100111145,Campbell,Christopher,christopher_campbell@uri.edu,CSC101,MTH101,PHY101,WRT101,LAN101,URI101
 100111146,Daniels,Donna,donna_daniels@uri.edu,CSC101,CSC102,MTH101,MTH102,WRT101,SPA101
 100111147,Evans,Edward,edward_evans@uri.edu,WRT101,CSC101,LAN102,SPA102,MTH101,MTH102
@@ -52,4 +52,4 @@ StudentID,LastName,FirstName,Email,Class1,Class2,Class3,Class4,Class5,Class6
 100111162,Taylor,Thomas,thomas_taylor@uri.edu,CSC101,CSC102,MTH101,MTH102,WRT101,SPA101
 100111163,Upton,Uma,uma_upton@uri.edu,WRT101,CSC101,LAN102,SPA102,MTH101,MTH102
 100111164,Vargas,Vanessa,vanessa_vargas@uri.edu,CSC102,MTH102,PHY101,WRT101,LAN102,SPA102
-100111165,Watson,William,william_watson@uri.edu,CSC101,MTH101,PHY102,W
+100111165,Watson,William,william_watson@uri.edu,CSC101,MTH101,PHY102,WRT201
