@@ -233,10 +233,8 @@ void makeSchedule(std::string file_name,BST* tree){
         }
         long int id = stoi(temp);
 
-        if (tree->search(id) == nullptr) {
-            Student new_student(id, first_name, last_name, email, classes);
-            tree->insert(new_student);
-        }
+        Student new_student(id, first_name, last_name, email, classes);
+        tree->insert(new_student);
     }
 }
 
