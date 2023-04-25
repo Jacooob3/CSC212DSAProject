@@ -87,6 +87,7 @@ int main() {
                 std::cin >> out_put;
                 //making sure command is in all uppercase.
                 out_put = uppercase(out_put);
+                //Entering student information through inputs
                 if (out_put == "TERMINAL") {
                     int id_num;
                     std::string last_name, first_name, email;
@@ -98,7 +99,7 @@ int main() {
                     id_num = stoi(temp);
                     //if student is already in database...
                     if (tree.search(id_num) != nullptr) {
-                        //while student is already in database continue to ask for a new Student ID that is not so that the new student can be added.
+                        //while student is already in database continue to ask for a new Student ID that is not, so that the new student can be added.
                         while (tree.search(id_num) != nullptr) {
                             std::cout << "Student is already in database, please input new ID" << std::endl;
                             std::cin >> temp;
@@ -121,11 +122,12 @@ int main() {
                             classes.push_back(temp);
                             std::cout << "Enter new student's class or enter 'QUIT' to quit:" << std::endl;
                         }
-                        //creates new student 
+                        //creates new student using given information
                         Student new_student(id_num, first_name, last_name, email, classes);
                         tree.insert(new_student);
                         cont_add = false;
                     }
+                //entering student information through a file
                 else if (out_put == "FILE") {
                     std::string file;
                     std::cout << "Enter file name:" << std::endl;
@@ -138,6 +140,7 @@ int main() {
             }
             std::cout << "\n";
         }
+        //command to delete student from database
         else if (command == "DELETE") {
             int id_num;
             std::string id_string;
@@ -146,14 +149,16 @@ int main() {
             std::cin >> id_string;
 
             id_num = std::stoi(id_string);
-
+            //if student is found in database, delete
             if (tree.search(id_num) != nullptr) {
                 tree.delete_student(id_num);
             }
+            //otherwise student not found
             else {
                 std::cout << "Student ID not found" << std::endl;
             }
         }
+        //command to enroll student in database
         else if (command == "ENROLL") {
             int id_num;
             std::string temp;
@@ -161,17 +166,19 @@ int main() {
             std::cout << "Enter student's ID number:" << std::endl;
             std::cin >> temp;
             id_num = stoi(temp);
-
+            //if student is found in database, add given course to their schedule
             if (tree.search(id_num) != nullptr) {
                 std::cout << "Enter enrolled course:" << std::endl;
                 std::cin >> temp;
                 tree.add_course(tree.search(id_num), temp);
             }
+            //otherwise, student not found
             else {
                 std::cout << "Student ID not found" << std::endl;
             }
             std::cout << "\n";
         }
+        //Command to delete a class (unenroll) from a student's schedule
         else if (command == "UNENROLL") {
             int id_num;
             std::string temp;
@@ -179,10 +186,11 @@ int main() {
             std::cout << "Enter student's ID number:" << std::endl;
             std::cin >> temp;
             id_num = stoi(temp);
-            //find the student using student id
+            //find the student using student ID
             if (tree.search(id_num) != nullptr) {
                 std::cout << "Enter course to unenroll:" << std::endl;
                 std::cin >> temp;
+                //removes course of student after making sure student is there
                 tree.remove_course(tree.search(id_num), temp); //remove the course
             }
             else {
