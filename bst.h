@@ -26,6 +26,7 @@ private:
     void printInOrderRec(BSTNode *root, std::ofstream &os);
     void printPostOrderRec(BSTNode *root, std::ofstream &os);
     int getHeightRec(BSTNode* root);
+    BSTNode* delete_rec(BSTNode* node, int id);
 
 public:
     BST();
@@ -43,4 +44,7 @@ public:
     int getHeight();
     void add_course(BSTNode* tmp, std::string course);
     void remove_course(BSTNode* tmp, std::string course);
+    void delete_student(int id);
+    StudetBST find_min_value(BSTNode* node);
+}
 };
