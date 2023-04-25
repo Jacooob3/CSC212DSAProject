@@ -53,7 +53,7 @@
  <h3> Compiling </h3>
  <li>Compile the project files (main.cpp, student.cpp, and bst.cpp) using a C++ compiler (e.g., g++  main.cpp student.cpp bst.cpp -o main). </li>
  <li>You can then either continue through the terminal in CLION or open the executable created by the compiler in your directory </li>
- ![b9411d9d71b4d953c782a159d256c6ac](https://user-images.githubusercontent.com/98486911/234163085-0c6b8896-174a-45e7-a569-372c4a2ac8f4.png)
+ ![1](https://github.com/Jacooob3/CSC212DSAProject/blob/main/b9411d9d71b4d953c782a159d256c6ac.png)
  <li>Run the compiled program (e.g., ./main).</li>
  <li>Follow the prompts to interact with the Student Information System.</li>
 
