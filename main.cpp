@@ -52,7 +52,7 @@ int main() {
             os.close();
             std::cout << "\n";
         }
-        //
+            //
         else if (command == "COURSE") {
             std::string course;
             std::cout << "Enter the course title:" << std::endl;
@@ -60,7 +60,7 @@ int main() {
             std::cout << "There are " << tree.courseCount(course) << " in " << course << "\n";
             std::cout << "\n";
         }
-        //
+            //
         else if (command == "SEARCH") {
             int id_num;
             std::string temp;
@@ -135,7 +135,7 @@ int main() {
             std::cin >> id_string;
 
             id_num = std::stoi(id_string);
-            
+
             if (tree.search(id_num) != nullptr) {
                 tree.delete_student(id_num);
             }
