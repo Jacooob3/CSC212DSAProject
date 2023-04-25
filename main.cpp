@@ -45,14 +45,14 @@ int main() {
         command = uppercase(command);
         std::cout << "\n";
 
-        //Adding code to allow these commands to run
+        //Command to print all student schedules
         if (command == "ALL") {
             os.open(out_file); //open an output file
             tree.inorder(os); //prints out all student's schedules by performing an inorder traversal of the BST
             os.close();
             std::cout << "\n";
         }
-            //
+            //Command to find the number of students enrolled in a specific course
         else if (command == "COURSE") {
             std::string course;
             std::cout << "Enter the course title:" << std::endl;
@@ -60,14 +60,14 @@ int main() {
             std::cout << "There are " << tree.courseCount(course) << " in " << course << "\n";
             std::cout << "\n";
         }
-            //
+            //Command to search for a specific student ID 
         else if (command == "SEARCH") {
             int id_num;
             std::string temp;
             std::cout << "Enter student's ID number:" << std::endl;
             std::cin >> temp;
             id_num = stoi(temp);
-
+            // Search database to find out if student is in the database
             if (tree.search(id_num) != nullptr) {
                 os.open(out_file);
                 tree.print_node(tree.search(id_num), os);
@@ -78,12 +78,14 @@ int main() {
             }
             std::cout << "\n";
         }
+        //Command to add student to database
         else if (command == "ADD") {
             bool cont_add = true;
             while (cont_add) {
                 std::string out_put;
                 std::cout << "To enter new student's data by terminal, enter 'TERMINAL', to enter by csv file, enter 'FILE'" << std::endl;
                 std::cin >> out_put;
+                //making sure command is in all uppercase.
                 out_put = uppercase(out_put);
                 if (out_put == "TERMINAL") {
                     int id_num;
@@ -94,7 +96,9 @@ int main() {
                     std::cout << "Enter new student's ID number:" << std::endl;
                     std::cin >> temp;
                     id_num = stoi(temp);
+                    //if student is already in database...
                     if (tree.search(id_num) != nullptr) {
+                        //while student is already in database continue to ask for a new Student ID that is not so that the new student can be added.
                         while (tree.search(id_num) != nullptr) {
                             std::cout << "Student is already in database, please input new ID" << std::endl;
                             std::cin >> temp;
@@ -117,8 +121,8 @@ int main() {
                             classes.push_back(temp);
                             std::cout << "Enter new student's class or enter 'QUIT' to quit:" << std::endl;
                         }
-
-                        Student new_student(id_num, first_name, email, last_name, classes);
+                        //creates new student 
+                        Student new_student(id_num, first_name, last_name, email, classes);
                         tree.insert(new_student);
                         cont_add = false;
                     }
