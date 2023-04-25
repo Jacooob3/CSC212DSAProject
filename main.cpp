@@ -134,8 +134,14 @@ int main() {
             std::cout << "Enter student's ID number:" << std::endl;
             std::cin >> id_string;
 
-            //delete function here
-            std::cout << "\n";
+            id_num = std::stoi(id_string);
+            
+            if (tree.search(id_num) != nullptr) {
+                tree.delete_student(id_num);
+            }
+            else {
+                std::cout << "Student ID not found" << std::endl;
+            }
         }
         else if (command == "ENROLL") {
             int id_num;
