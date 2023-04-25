@@ -94,27 +94,34 @@ int main() {
                     std::cout << "Enter new student's ID number:" << std::endl;
                     std::cin >> temp;
                     id_num = stoi(temp);
-                    std::cout << "Enter new student's Last Name:" << std::endl;
-                    std::cin >> last_name;
-                    std::cout << "Enter new student's First Name:" << std::endl;
-                    std::cin >> first_name;
-                    std::cout << "Enter new student's email:" << std::endl;
-                    std::cin >> email;
-
-                    std::cout << "Enter new student's class:" << std::endl;
-                    while (std::cin >> temp) {
-                        temp = uppercase(temp);
-                        if (temp == "QUIT") {
-                            break;
+                    if (tree.search(id_num) != nullptr) {
+                        while (tree.search(id_num) != nullptr) {
+                            std::cout << "Student is already in database, please input new ID" << std::endl;
+                            std::cin >> temp;
+                            id_num = stoi(temp);
                         }
-                        classes.push_back(temp);
-                        std::cout << "Enter new student's class or enter 'QUIT' to quit:" << std::endl;
                     }
+                        std::cout << "Enter new student's Last Name:" << std::endl;
+                        std::cin >> last_name;
+                        std::cout << "Enter new student's First Name:" << std::endl;
+                        std::cin >> first_name;
+                        std::cout << "Enter new student's email:" << std::endl;
+                        std::cin >> email;
 
-                    Student new_student(id_num, first_name, email, last_name, classes);
-                    tree.insert(new_student);
-                    cont_add = false;
-                }
+                        std::cout << "Enter new student's class:" << std::endl;
+                        while (std::cin >> temp) {
+                            temp = uppercase(temp);
+                            if (temp == "QUIT") {
+                                break;
+                            }
+                            classes.push_back(temp);
+                            std::cout << "Enter new student's class or enter 'QUIT' to quit:" << std::endl;
+                        }
+
+                        Student new_student(id_num, first_name, email, last_name, classes);
+                        tree.insert(new_student);
+                        cont_add = false;
+                    }
                 else if (out_put == "FILE") {
                     std::string file;
                     std::cout << "Enter file name:" << std::endl;
@@ -206,13 +213,21 @@ void makeSchedule(std::string file_name,BST* tree){
         std::stringstream ss(line);
         std::getline(ss, temp, ',');
         std::getline(ss, last_name, ',');
-        std::getline(ss, first_name , ',');
-        std::getline(ss,email, ',');
-        while(std::getline(ss,class_name, ',')){
+        std::getline(ss, first_name, ',');
+        std::getline(ss, email, ',');
+        while (std::getline(ss, class_name, ',')) {
             //add to class student
             classes.push_back(class_name);
         }
         long int id = stoi(temp);
+
+        if (tree->search(id) != nullptr) {
+            while (tree->search(id) != nullptr) {
+            std::cout << "Student is already in database, please input new ID" << std::endl;
+            std::cin >> temp;
+            id = stoi(temp);
+        }
+    }
         Student new_student(id, first_name, last_name, email, classes);
         tree->insert(new_student);
     }
