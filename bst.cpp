@@ -27,6 +27,9 @@ BSTNode* BST::insert(Student student, BSTNode* p){
         BSTNode *q = new BSTNode(student);
         return q;
     }
+    if(p->data.get_id() == student.get_id()){
+        return nullptr;
+    }
     if(student.get_id() < p->data.get_id()){
         p->left = insert(student, p->left);
     }
