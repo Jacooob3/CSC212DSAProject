@@ -45,6 +45,6 @@ public:
     void add_course(BSTNode* tmp, std::string course);
     void remove_course(BSTNode* tmp, std::string course);
     void delete_student(int id);
-    StudetBST find_min_value(BSTNode* node);
+    Student find_min_value(BSTNode* node);
 }
 };
