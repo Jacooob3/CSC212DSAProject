@@ -50,6 +50,14 @@
      <li>student.cpp - Source file containing the implementation of the Student class.</li>
      <li>bst.h - Header file containing the declaration of the BSTNode and BST classes.</li>
      <li>bst.cpp - Source file containing the implementation of the BSTNode and BST classes. </li></p>
+ <h3> Compiling </h3>
+ <li>Compile the project files (main.cpp, student.cpp, and bst.cpp) using a C++ compiler (e.g., g++ -o main main.cpp student.cpp bst.cpp). </li>
+ <li>Run the compiled program (e.g., ./main).</li>
+ <li>Follow the prompts to interact with the Student Information System.</li>
+
+
+
+
  <h2> Binary Tree Visualizer</h2>
  <p> It is recommended to click on this link https://github.com/Jacooob3/CSC212DSAProject/raw/main/graphviz.svg for the full visuals as it is a very wide image
      and could not fit on this page</p>
