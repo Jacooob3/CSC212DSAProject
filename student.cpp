@@ -45,7 +45,9 @@ void Student::remove_classes(std::string class_name) {
             continue;
         }
         //reassigns each class in list to remove
-        temp.push_back(this->classes[i]);
+        else{
+            temp.push_back(this->classes[i]);
+        }
     }
     this->classes = temp;
 }
