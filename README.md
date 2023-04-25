@@ -50,15 +50,21 @@
      <li>student.cpp - Source file containing the implementation of the Student class.</li>
      <li>bst.h - Header file containing the declaration of the BSTNode and BST classes.</li>
      <li>bst.cpp - Source file containing the implementation of the BSTNode and BST classes. </li></p>
- <h3> Compiling </h3>
+ <h3> Compiling  Instructions</h3>
  <li>Compile the project files (main.cpp, student.cpp, and bst.cpp) using a C++ compiler (e.g., g++  main.cpp student.cpp bst.cpp -o main). </li>
  <li>You can then either continue through the terminal in CLION or open the executable created by the compiler in your directory </li>
- ![1](https://github.com/Jacooob3/CSC212DSAProject/blob/main/b9411d9d71b4d953c782a159d256c6ac.png)
- <li>Run the compiled program (e.g., ./main).</li>
+ <li>Run the compiled program (e.g., ./main) if using terminal in CLION.</li>
  <li>Follow the prompts to interact with the Student Information System.</li>
-
-
-
+ 
+ <h3> Runtime Instruction </h3>
+ <p>After you have compiled and executed the program, you will be guided through a series of prompts to interact with the program. Here's a step-by- step guide on how to use the program: </p>
+ <li>First, you will be prompted to enter the input file name containing the initial list of students and their information. Enter the file name and press Enter. </li>
+ <li>Next, you will be prompted to enter the output file name where the program will store the results of your actions (e.g., printing all students' schedules). </li>
+ <li>You will then see a list of available commands. Enter the command of your choice and press Enter.</li>
+ <li>Based on your selected command, you may need to provide additional information, such as student ID, course name, or student details. </li>
+ <li>After completing an action, you will be returned to the list of available commands. Continue to enter commands as needed.</li>
+ <li>When you are done using the program, enter the 'QUIT' command to exit the program. </li>
+ <li>Upon exiting the program, you can open the output file specified earlier to view the results of your actions. </li>
 
  <h2> Binary Tree Visualizer</h2>
  <p> It is recommended to click on this link https://github.com/Jacooob3/CSC212DSAProject/raw/main/graphviz.svg for the full visuals as it is a very wide image
