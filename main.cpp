@@ -221,15 +221,10 @@ void makeSchedule(std::string file_name,BST* tree){
         }
         long int id = stoi(temp);
 
-        if (tree->search(id) != nullptr) {
-            while (tree->search(id) != nullptr) {
-            std::cout << "Student is already in database, please input new ID" << std::endl;
-            std::cin >> temp;
-            id = stoi(temp);
+        if (tree->search(id) == nullptr) {
+            Student new_student(id, first_name, last_name, email, classes);
+            tree->insert(new_student);
         }
-    }
-        Student new_student(id, first_name, last_name, email, classes);
-        tree->insert(new_student);
     }
 }
 
