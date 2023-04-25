@@ -51,7 +51,9 @@
      <li>bst.h - Header file containing the declaration of the BSTNode and BST classes.</li>
      <li>bst.cpp - Source file containing the implementation of the BSTNode and BST classes. </li></p>
  <h3> Compiling </h3>
- <li>Compile the project files (main.cpp, student.cpp, and bst.cpp) using a C++ compiler (e.g., g++ -o main main.cpp student.cpp bst.cpp). </li>
+ <li>Compile the project files (main.cpp, student.cpp, and bst.cpp) using a C++ compiler (e.g., g++  main.cpp student.cpp bst.cpp -o main). </li>
+ <li>You can then either continue through the terminal in CLION or open the executable created by the compiler in your directory </li>
+ ![b9411d9d71b4d953c782a159d256c6ac](https://user-images.githubusercontent.com/98486911/234163085-0c6b8896-174a-45e7-a569-372c4a2ac8f4.png)
  <li>Run the compiled program (e.g., ./main).</li>
  <li>Follow the prompts to interact with the Student Information System.</li>
 
