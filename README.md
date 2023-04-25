@@ -42,8 +42,14 @@
 <p>
   Additionally, we determined the format and content of the CSV data file used to populate the B-tree with student records.
   </p>
-  <h2>Compiling and Runtime Instructions</h2>
-  <p> </p>
+  <h2>Indepth Look at the Program</h2>
+  <h3> Files </h3>
+  <p> The project consists of the following files: </p>
+  <p><li>main.cpp - The main program file that contains the user interface for interacting with the Student Information System.</li>
+     <li>student.h - Header file containing the declaration of the Student class.</li>
+     <li>student.cpp - Source file containing the implementation of the Student class.</li>
+     <li>bst.h - Header file containing the declaration of the BSTNode and BST classes.</li>
+     <li>bst.cpp - Source file containing the implementation of the BSTNode and BST classes. </li></p>
  <h2> Binary Tree Visualizer</h2>
  <p> It is recommended to click on this link https://github.com/Jacooob3/CSC212DSAProject/raw/main/graphviz.svg for the full visuals as it is a very wide image
      and could not fit on this page</p>
