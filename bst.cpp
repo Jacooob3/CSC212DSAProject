@@ -205,3 +205,41 @@ void BST::add_course(BSTNode *tmp, std::string course) {
 void BST::remove_course(BSTNode *tmp, std::string course) {
     tmp->data.remove_classes(course);
 }
+void BST::delete_student(int id) {
+    root = delete_rec(root, id);
+}
+
+BSTNode* BST::delete_rec(BSTNode* node, int id) {
+    if (node == nullptr) {
+        return node;
+    }
+
+    if (id < node->data.get_id()) {
+        node->left = delete_rec(node->left, id);
+    } else if (id > node->data.get_id()) {
+        node->right = delete_rec(node->right, id);
+    } else {
+        if (node->left == nullptr) {
+            BSTNode* temp = node->right;
+            delete node;
+            return temp;
+        } else if (node->right == nullptr) {
+            BSTNode* temp = node->left;
+            delete node;
+            return temp;
+        }
+
+        node->data = find_min_value(node->right);
+        node->right = delete_rec(node->right, node->data.get_id());
+    }
+    return node;
+}
+
+Student BST::find_min_value(BSTNode* node) {
+    Student min_val = node->data;
+    while (node->left != nullptr) {
+        min_val = node->left->data;
+        node = node->left;
+    }
+    return min_val;
+}
