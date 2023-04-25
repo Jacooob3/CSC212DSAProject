@@ -50,6 +50,13 @@
      <li>student.cpp - Source file containing the implementation of the Student class.</li>
      <li>bst.h - Header file containing the declaration of the BSTNode and BST classes.</li>
      <li>bst.cpp - Source file containing the implementation of the BSTNode and BST classes. </li></p>
+ <p>The input file has the following rules and restrictions </p>
+ <li>The file can be named anything but has to be a .csv file </li>
+ <li>The file should be formatted in the following way </li>
+ <li>The first line of the file is the template which is "StudentID,LastName,FirstName,Email,Class1,Class2,Class3,Class4,Class5,Class6" </li>
+ <li>The following lines will contain all the student information </li>
+ <li>If there are students with same ID number, the program will only accept the first student and then not accept the other and skips it</li>
+ <li>The StudentID should always be a number </li>
  <h3> Compiling  Instructions</h3>
  <li>Compile the project files (main.cpp, student.cpp, and bst.cpp) using a C++ compiler (e.g., g++  main.cpp student.cpp bst.cpp -o main). </li>
  <li>You can then either continue through the terminal in CLION or open the executable created by the compiler in your directory </li>
